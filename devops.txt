@@ -99,6 +99,9 @@ docker container logs
 docker container run -it alpine /bin/sh 
 docker container exec -it id  /bin/sh      ---->to run existing container
 
+docker volume create something
+docker run -it alpine --mount source=app_vol,destination=(dest in file) /bin/sh
+docker run -it alpine -v (source in docker):(dest in docker) /bin/sh
 
 Dockerfile
 
