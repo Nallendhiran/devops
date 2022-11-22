@@ -66,7 +66,7 @@ configuration:
 		git config --global user.email "a@gmail.com"
 
 
---------------------------------------------------------------jenkins----------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------jenkins--------------------------------------------------------------------------------------------------
 
 1)download jenkins.
 2)install required plugins.
@@ -74,11 +74,32 @@ configuration:
 			sample file for jenkins:        https://github.com/Nallendhiran/hackme/blob/master/samplejenkinsfile
 4)use jenkins databse or file to configure the credentials.
 
---------------------------------------------------------------docker---------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------docker---------------------------------------------------------------------------------------------------
+
+whole databases===registery
+separate file or os or nginx or nodejs ===== images
+a one image can used to run multiple container
+running instance of an image is called container.
 
 
---------------------------------------------------------------------------------kubernetes-----------------------------------------------------------------------------------------------
--------------------------------------------------------------------------ansible---------------------------------------------------------------------------------------------------------
+docker --help
+docker container create --name=first alpine
+docker images
+docker images ps -a
+docker  images ls
+docker images rm {name}
+docker rm 
+docker images prune -a
+docker images history id
+docker images inspect name
+docker restart container
+docker container start --name=some id(or)name
+docker container stop id
+docker container logs
+docker container run -it alpine /bin/sh 
+docker container exec -it id  /bin/sh      ---->to run existing container
+--------------------------------------------------------------------------------kubernetes-----------------------------------------------------------------------------
+-------------------------------------------------------------------------ansible---------------------------------------------------------------------------------------
 
 configuration management
 
@@ -88,6 +109,6 @@ https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2018/11/Ansible-Ch
 
 playbook sample codes:     https://github.com/adithyakhamithkar/ansible-playbooks
 
-------------------------------------------------------------------------------------------selenium---------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------selenium---------------------------------------------------------------------
 
 software testing.
