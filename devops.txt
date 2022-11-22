@@ -103,6 +103,9 @@ docker volume create something
 docker run -it alpine --mount source=app_vol,destination=(dest in file) /bin/sh
 docker run -it alpine -v (source in docker):(dest in docker) /bin/sh
 
+docker run -it alpine --cpu-shares=1000 --cpus=1 /bin/bash
+docker run -it alpine --memory-reservation=10000m -m 100m --cpus=1 /bin/bash
+
 Dockerfile
 
 FROM ubuntu:latest
