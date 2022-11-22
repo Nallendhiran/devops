@@ -98,6 +98,16 @@ docker container stop id
 docker container logs
 docker container run -it alpine /bin/sh 
 docker container exec -it id  /bin/sh      ---->to run existing container
+
+
+Dockerfile
+
+FROM ubuntu:latest
+RUN apt-get update
+COPY some /some.txt
+CMD apachectl -D FOREGROUND
+
+examples_codes:https://www.learnitguide.net/2018/06/dockerfile-explained-with-examples.html
 --------------------------------------------------------------------------------kubernetes-----------------------------------------------------------------------------
 -------------------------------------------------------------------------ansible---------------------------------------------------------------------------------------
 
