@@ -1,0 +1,93 @@
+---------------------------------------------------------------------------git-----------------------------------------------------------------------------------------------------------
+
+initialize:
+		git init
+
+clone:
+		git clone https://*.*
+
+add all files to git:
+		git add .
+
+after adding commit the changes with some description:
+		git commit -m "something"
+
+git add our code to our repo:
+		git remote add origin https://*.*
+
+push our code to repo:
+		git push origin master
+
+mv from one branch to another:
+		git checkout some
+
+pull the other repo:
+		git pull
+
+view status:
+		git status
+
+to see logs:
+		git log
+
+to view diff in changes:
+		git diff --staged
+
+to remove a file:
+		git rm file
+
+to move a file:
+		git mv some file
+
+to reset to previous state:
+		git reset file
+
+to undo changes:
+		git revert ********************(id)
+
+to create branch:
+		git branch name
+
+to merge with a branch:
+		git merge name
+
+fetch the repo:
+		git fetch https://*.*
+
+connect branch with another:
+		git rebase branch_name(says connect branch to another)
+
+fork:
+ 		fork the github repo. 
+
+configuration:
+		git config -l
+		git config --global user.name "name"
+		git config --global user.email "a@gmail.com"
+
+
+--------------------------------------------------------------jenkins----------------------------------------------------------------------------------------------------------------
+
+1)download jenkins.
+2)install required plugins.
+3)Jenkinsfile used to configuration.
+			sample file for jenkins:        https://github.com/Nallendhiran/hackme/blob/master/samplejenkinsfile
+4)use jenkins databse or file to configure the credentials.
+
+--------------------------------------------------------------docker---------------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------kubernetes-----------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------ansible---------------------------------------------------------------------------------------------------------
+
+configuration management
+
+use .yml file to access the code
+
+https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2018/11/Ansible-Cheat_Sheet_Edureka.png               --cheatsheet
+
+playbook sample codes:     https://github.com/adithyakhamithkar/ansible-playbooks
+
+------------------------------------------------------------------------------------------selenium---------------------------------------------------------------------------------------
+
+software testing.
