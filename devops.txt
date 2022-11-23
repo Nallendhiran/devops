@@ -121,6 +121,12 @@ example:     https://github.com/compose-spec/compose-spec/blob/master/spec.md
 install docker-compose
 docker-compose filename up(or) --help
 
+docker swarm: (to run multiple worker nodes in manager node )
+docker swarm init --advertise-addr manager-ip
+	-use that token on worker nodes.
+docker node --help
+
+
 Dockerfile------------
 
 FROM ubuntu:latest
