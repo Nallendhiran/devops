@@ -108,7 +108,17 @@ cpu manage:
 docker run -it alpine --cpu-shares=1000 --cpus=1 /bin/bash
 docker run -it alpine --memory-reservation=10000m -m 100m --cpus=1 /bin/bash
 
-Dockerfile
+networking:
+types:
+	bridge(to access outside),none,host
+docker network create {name}
+docker run -it alpine --network=bridge
+docker run -it alpine --network=bridge -p our_port:container_port
+
+docker compose:(to run multiple containers in single instance)
+example:     https://github.com/compose-spec/compose-spec/blob/master/spec.md
+
+Dockerfile------------
 
 FROM ubuntu:latest
 RUN apt-get update
