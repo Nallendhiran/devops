@@ -125,8 +125,17 @@ docker swarm: (to run multiple worker nodes in manager node )
 docker swarm init --advertise-addr manager-ip
 	-use that token on worker nodes.
 docker node --help
+docker service ps *
+docker network create -d overlay {name}
+docker service scale web1=5 (to run or add new 5 replicas)
+docker service create --replicas=2 --name some image_name
+docker service update --mage some:latest service_name
+docker service rollback service_name(go back to previous version)
+docker node update --availability  drain name(to empty the container and run all container in other available nodes)
 
-
+to apply changes:
+docker commit id {name}:{tag}
+docker run -it {name} /bin/bash
 Dockerfile------------
 
 FROM ubuntu:latest
