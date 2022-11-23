@@ -121,6 +121,15 @@ example:     https://github.com/compose-spec/compose-spec/blob/master/spec.md
 install docker-compose
 docker-compose filename up(or) --help
 
+Sample:
+version: "3.9"
+services:
+   app:
+     image: "httpd:latest"
+     ports:
+       - 3000:80
+       
+
 docker swarm: (to run multiple worker nodes in manager node )
 docker swarm init --advertise-addr manager-ip
 	-use that token on worker nodes.
@@ -136,6 +145,8 @@ docker node update --availability  drain name(to empty the container and run all
 to apply changes:
 docker commit id {name}:{tag}
 docker run -it {name} /bin/bash
+
+
 Dockerfile------------
 
 FROM ubuntu:latest
