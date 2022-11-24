@@ -191,7 +191,8 @@ no error occurs)sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernete
  kubectl delete pods {name}
  kubectl apply -f file.yaml
  kubectl edit deploy {name} -o yaml,wide(to output format)
- single file run:  kubectl run httpd --image=httpd --replicas=1 --port=80
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       single file run:  kubectl run httpd --image=httpd --replicas=1 --port=80
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       to expose to outside:  kubectl expose pods first --port=80 --type=LoadBalancer
  
  
  Even we delete the pods the pods created based on number pf replicas(if we want to stop delete deployment or change the yaml file)
