@@ -209,6 +209,17 @@ no error occurs)sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernete
 	kind: Namespace
 	metadata:
 	  name: {name}
+	  
+  kubernetes secrets:(used to store secrets from accessing outside the image)
+  kubectl get secrets(able to access using environment_variables,volume by yaml file)
+  apiVersion:v1
+	kind: Namespace
+	metadata:
+	  name: {name}
+	type:Opaque
+	data:
+	   MYSQL_PASS: base64()
+	   
   
  resouce objects:
  for creating yaml file(for deploy,service,node)
