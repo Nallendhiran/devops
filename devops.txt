@@ -220,6 +220,13 @@ no error occurs)sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernete
 	data:
 	   MYSQL_PASS: base64()
 	   
+  kubernetes configmap:   (using env,volume)
+  to see conf files
+  kubectl get cm 
+  create a config file
+  kubectl create cm {name} --from-file=nameoffile
+  
+  
   
  resouce objects:
  for creating yaml file(for deploy,service,node)
