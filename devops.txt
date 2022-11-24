@@ -196,6 +196,18 @@ no error occurs)sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernete
  
  Even we delete the pods the pods created based on number pf replicas(if we want to stop delete deployment or change the yaml file)
  use apply to make changes.
+ 
+ kubernetes namespace:
+ a cluster contains virtual clusters which is known as namespace.(default,kube-system,kube-public).
+ always you were access the default namespace.
+ 
+  kubectl get nodes -n defualt.
+  
+  to create own namespace:
+  	apiVersion:v1
+	kind: Namespace
+	metadata:
+	  name: {name}
   
  resouce objects:
  for creating yaml file(for deploy,service,node)
