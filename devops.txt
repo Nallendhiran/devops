@@ -156,6 +156,57 @@ CMD apachectl -D FOREGROUND
 
 examples_codes:https://www.learnitguide.net/2018/06/dockerfile-explained-with-examples.html
 --------------------------------------------------------------------------------kubernetes-----------------------------------------------------------------------------
+
+works like master(api,scheduler,control-manager,etcd(database) and worker(kubelet(used fortalk with master),kube-proxy(used for network).
+
+++++++++++++++++++++++++++++++   swap off fist    ----------------------------------------------
+
+it is a competitor for docker swarm.
+used for configuring multiple nodes.
+it uses multiple pods in a single node.
+in a single pod multiple containers able to create.
+cannot able to create multiple container on pod with same image.(eg:httpd)
+
+Installation:  
+
+we need to install kubectl=1.20.0-00,apt-transport-https,curl,kubelet=1.20.0-00,kubeadm=1.20.0-00,docker.io
+(curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add .)
+no error occurs)sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+ 
+ start docker.
+ 
+          initialize:
+ 1)kubeadm  init
+ 2)kubeadm init --apiserver-advertise-address {ip} --pod-network-cidr=172.16.0.0/16  (for specific ip)
+ 
+ download the prerequestities.
+ use the token to configure worker node.
+ 
+ uses:
+ kubectl get nodes
+ kubectl get pods
+ kubectl get svc
+ kubectl get deploy
+ kubectl describe node {hostname}
+ kubectl delete pods {name}
+ kubectl apply -f file.yaml
+ kubectl edit deploy {name} -o yaml,wide(to output format)
+ single file run:  kubectl run httpd --image=httpd --replicas=1 --port=80
+ 
+ 
+ Even we delete the pods the pods created based on number pf replicas(if we want to stop delete deployment or change the yaml file)
+ use apply to make changes.
+  
+ resouce objects:
+ for creating yaml file(for deploy,service,node)
+ 
+ communication types:(works based on service)
+ container to container
+ pod to pod (intra node(within pod) ,inter node(outside pod))
+ pod to service.
+ external to service(clusterip(within container),(nodeport(for setting port),loadbalancer(random aws port))(outside container like localhost),extername(external aws access) )
+ 
+ service port(port(to access),targetport(in container port),nodeport(outside-access))
 -------------------------------------------------------------------------ansible---------------------------------------------------------------------------------------
 
 configuration management
