@@ -226,7 +226,71 @@ no error occurs)sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernete
   create a config file
   kubectl create cm {name} --from-file=nameoffile
   
-  
+  kubernetes persistent volume:
+it is a volume used for storing data by using outside storage like (nfs,fc,iscsi,aws,cinder) (first change the volumes into pv type)
+use the volume in another server and change it into pv type using yaml file.
+it is used for storing data
+
+kubernetes persistent volume claim:
+when any pods requested for storage,these kubernetes cluster gives the storage to it.
+
+kubectl get pv
+
+
+kubernetes monitoring:
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl get top nodes,*
+
+kubernetes resource allocation:
+resources:
+  requests:(min)
+	cpu: 50m
+	memory:500Mi
+  limits:(max)
+	cpu:
+	memory:
+kubectl describe pods {name}
+
+kubernetes ingress:
+it acts like a proxy to access inside pod.
+we use single ingress to access outside (ingress calls the internal ips)
+
+kubectl get ing
+
+to get nginx-ingress
+git clone https://github.com/kubernetes/ingress/ingress-nginx.git
+
+ingress with ssl:
+first upload your ssl file in secrets
+
+spec:
+  tls:
+	-hosts:
+	  -some.some.com
+	 secretName: my-secret
+
+
+to create own new ssl cert:
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -out name.crt -keyout some.key -subj "/CN=url.com/O=some"  (O    same name as -out name)
+
+
+kubectl create secret tls {O name} --namespace default --key keyfile --cert crtfile(use in secret)
+
+
+
+dashboard:
+https://github.com/kubernetes/dashboard/blob/master/aio/deploy/recommended.yaml
+creates a new cluster with name dashboard
+
+
+to create token:
+kubectl create serviceaccount dashboard -n default
+kubectl create clusterrolebinding dashboard-admin -n default --clusterrole=cluster-admin --serviceaccount=default dashboard
+kubectl get secret ${kubectl get serviceaccount dashboard -o jsonpath="( secrete[0] name)" } -o jsonpath="{ data token }" | base64 --decode 
+
+(or)
+
+use our config file.
   
  resouce objects:
  for creating yaml file(for deploy,service,node)
