@@ -291,7 +291,12 @@ kubectl get secret ${kubectl get serviceaccount dashboard -o jsonpath="{.secrets
 (or)
 
 use our config file.
-  
+
+in aws:
+set resizevolume to true
+if many replicas running first delete one node to make effect on this.
+if single replica is run we should delete it.(it randomly generate it)
+ 
  resouce objects:
  for creating yaml file(for deploy,service,node)
  
