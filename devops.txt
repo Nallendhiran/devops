@@ -280,17 +280,18 @@ kubectl create secret tls {O name} --namespace default --key keyfile --cert crtf
 
 dashboard:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/aio/deploy/recommended.yaml
+kubectl edit -n kubernetes-dashboard svc
 creates a new cluster with name dashboard
 
 
 to create token:
 kubectl create serviceaccount dashboard -n default
-kubectl create clusterrolebinding dashboard-admin -n default --clusterrole=cluster-admin --serviceaccount=default dashboard
-kubectl get secret ${kubectl get serviceaccount dashboard -o jsonpath="{.secrets[0].name}" } -o jsonpath="{ data token }" | base64 --decode 
+kubectl create clusterrolebinding dashboard-admin -n default --clusterrole=cluster-admin --serviceaccount=default:dashboard
+kubectl get secret ${kubectl get serviceaccount dashboard -o jsonpath="{.secrets[0].name}" } -o jsonpath="{.data.token}" | base64 --decode 
 
 (or)
 
-use our config file.
+use our config file.(kubectl get pod -v6)
 
 in aws:
 set resizevolume to true
