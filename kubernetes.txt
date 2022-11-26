@@ -1,0 +1,151 @@
+works like master(api,scheduler,control-manager,etcd(database) and worker(kubelet(used fortalk with master),kube-proxy(used for network).
+
+++++++++++++++++++++++++++++++   swap off fist    ----------------------------------------------
+
+it is a competitor for docker swarm.
+used for configuring multiple nodes.
+it uses multiple pods in a single node.
+in a single pod multiple containers able to create.
+cannot able to create multiple container on pod with same image.(eg:httpd)
+
+Installation:  
+
+we need to install kubectl=1.20.0-00,apt-transport-https,curl,kubelet=1.20.0-00,kubeadm=1.20.0-00,docker.io
+(curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add .)
+no error occurs)sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+ 
+ start docker.
+ 
+          initialize:
+ 1)kubeadm  init
+ 2)kubeadm init --apiserver-advertise-address {ip} --pod-network-cidr=172.16.0.0/16  (for specific ip)
+ 
+ download the prerequestities.
+ use the token to configure worker node.
+ 
+ uses:
+ kubectl get nodes
+ kubectl get pods
+ kubectl get svc
+ kubectl get deploy
+ kubectl describe node {hostname}
+ kubectl delete pods {name}
+ kubectl apply -f file.yaml
+ kubectl edit deploy {name} -o yaml,wide(to output format)
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       single file run:  kubectl run httpd --image=httpd --replicas=1 --port=80
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       to expose to outside:  kubectl expose pods first --port=80 --type=LoadBalancer
+ 
+ 
+ Even we delete the pods the pods created based on number pf replicas(if we want to stop delete deployment or change the yaml file)
+ use apply to make changes.
+ 
+ kubernetes namespace:
+ a cluster contains virtual clusters which is known as namespace.(default,kube-system,kube-public).
+ always you were access the default namespace.
+ 
+  kubectl get nodes -n defualt.
+  
+  to create own namespace:
+  	apiVersion:v1
+	kind: Namespace
+	metadata:
+	  name: {name}
+	  
+  kubernetes secrets:(used to store secrets from accessing outside the image)
+  kubectl get secrets(able to access using environment_variables,volume by yaml file)
+  apiVersion:v1
+	kind: Namespace
+	metadata:
+	  name: {name}
+	type:Opaque
+	data:
+	   MYSQL_PASS: base64()
+	   
+  kubernetes configmap:   (using env,volume)
+  to see conf files
+  kubectl get cm 
+  create a config file
+  kubectl create cm {name} --from-file=nameoffile
+  
+  kubernetes persistent volume:
+it is a volume used for storing data by using outside storage like (nfs,fc,iscsi,aws,cinder) (first change the volumes into pv type)
+use the volume in another server and change it into pv type using yaml file.
+it is used for storing data
+
+kubernetes persistent volume claim:
+when any pods requested for storage,these kubernetes cluster gives the storage to it.
+
+kubectl get pv
+
+
+kubernetes monitoring:
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl get top nodes,*
+
+kubernetes resource allocation:
+resources:
+  requests:(min)
+	cpu: 50m
+	memory:500Mi
+  limits:(max)
+	cpu:
+	memory:
+kubectl describe pods {name}
+
+kubernetes ingress:
+it acts like a proxy to access inside pod.
+we use single ingress to access outside (ingress calls the internal ips)
+
+kubectl get ing
+
+to get nginx-ingress
+git clone https://github.com/kubernetes/ingress/ingress-nginx.git
+
+ingress with ssl:
+first upload your ssl file in secrets
+
+spec:
+  tls:
+	-hosts:
+	  -some.some.com
+	 secretName: my-secret
+
+
+to create own new ssl cert:
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -out name.crt -keyout some.key -subj "/CN=url.com/O=some"  (O    same name as -out name)
+
+
+kubectl create secret tls {O name} --namespace default --key keyfile --cert crtfile(use in secret)
+
+
+
+dashboard:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/aio/deploy/recommended.yaml
+kubectl edit -n kubernetes-dashboard svc
+creates a new cluster with name dashboard
+
+
+to create token:
+kubectl create serviceaccount dashboard -n default
+kubectl create clusterrolebinding dashboard-admin -n default --clusterrole=cluster-admin --serviceaccount=default:dashboard
+kubectl get secret ${kubectl get serviceaccount dashboard -o jsonpath="{.secrets[0].name}" } -o jsonpath="{.data.token}" | base64 --decode 
+
+(or)
+
+use our config file.(kubectl get pod -v6)
+
+in aws:
+set resizevolume to true
+if many replicas running first delete one node to make effect on this.
+if single replica is run we should delete it.(it randomly generate it)
+ 
+ resouce objects:
+ for creating yaml file(for deploy,service,node)
+ 
+ communication types:(works based on service)
+ container to container
+ pod to pod (intra node(within pod) ,inter node(outside pod))
+ pod to service.
+ external to service(clusterip(within container),(nodeport(for setting port),loadbalancer(random aws port))(outside container like localhost),extername(external aws access) )
+ 
+ service port(port(to access),targetport(in container port),nodeport(outside-access))
