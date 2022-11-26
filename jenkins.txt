@@ -1,0 +1,5 @@
+1)download jenkins.
+2)install required plugins.
+3)Jenkinsfile used to configuration.
+			sample file for jenkins:        https://github.com/Nallendhiran/hackme/blob/master/samplejenkinsfile
+4)use jenkins databse or file to configure the credentials.
