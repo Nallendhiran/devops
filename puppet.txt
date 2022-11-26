@@ -1,0 +1,44 @@
+puppet:
+it is a configuration tool.
+it uses ssl certificates
+it is client server model.
+client contains puppet_agent,factor
+server contains modules,incuilt CA,environments.
+
+puppet forge:
+it is github repository client for getting modules more than 5000+.
+
+puppet dsl:
+child of ruby.
+programming language.
+
+apt-get install puppet-agent
+apt-get install puppet-master
+wget https://apt.puppletlabs.com/puppetlabs-release-pc1-xenial.deb
+dpkg -i deb_file
+systemctl start puppetserver
+systemctl enable puppetserver
+
+
+use the domain name in /etc/hosts (192.168.1.1 some.local)
+
+we also able to change /etc/sysconfig (java_args)
+In client:
+
+./puppet agent -t --server=puppet-master.local  (to create a ssl cert)
+
+In master:
+
+puppet cert list --all
+puppet cert sign puppet-client.local
+
+in manifests file:
+
+create site.pp file.
+
+node 'puppet-client.local'{
+include apache
+}
+
+in client:
+puppet agent -t --server-puppet-master.local --debug
