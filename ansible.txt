@@ -130,3 +130,18 @@ used for combine two files with single file
 task delegation:
 used for running tasks other than the configured hosts.
 use (delegate_to: localhost)
+
+ansible block:
+to execute group of tasks.
+used for error handling with rescue and always ststements.
+
+ansible vault:
+ansible-vault encrypt_string --ask-vault-pas -name 'ansible_become_pass' 'admin@123'(password)
+
+ansible --ask-vault-pass all -m ping -o
+
+ansible-vault encrypt --ask-vault-pass filename
+
+ansible custom modules:
+download (git clone https://github.com/ansible/ansible.git)
+~/src/ansible/hacking/test-module -m ./tmp.sh
