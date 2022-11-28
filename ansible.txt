@@ -109,3 +109,24 @@ file.yaml:
 user:me
 home/home/me
 
+facts:(/etc/ansible/facts.d)
+
+use (gather_facts: true) in yaml file.
+
+it is used for configuring the os related information.
+ansible node -m setup
+ansible node -m setup -a 'gather_subset=devices,!all'
+'filter=ansible_kernel or ansible_mem*'
+
+create custom fact in .fact file(make it as executable)
+
+
+jinja templates: (.j2)
+to manage all hosts we can use these templates to alter the yaml config file.
+
+assemble:
+used for combine two files with single file
+
+task delegation:
+used for running tasks other than the configured hosts.
+use (delegate_to: localhost)
