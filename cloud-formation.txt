@@ -1,0 +1,1 @@
+it is same as ansible for configuring the multi servers.
