@@ -1,0 +1,74 @@
+vagrant:
+it runs top on virtual machines.
+the vagrant vm's is known as box.
+it consists of two components: vagrant,box.
+
+it uses Vagrantfile.
+
+
+commands:
+1)vagrant init [name[url]]
+2)vagrant halt [name[id]]    ---  used for shut down the running machine.
+3)vagrant destroy [name[id]]  ---  used for stop the running machine and destroy all the resources when the time it was creating.
+4)vagrant up [name[id]]  --- used for running the machine.
+5)vagrant help box
+6)vagrant box list
+7)vagrant box add [link]
+
+images:(in .vagrant.d)
+vagrant box add ubuntu/trusty64
+
+to create a vagrantfile for the project:
+mkdir some
+vagrant init(which creates a vagrantfile)
+
+to update:
+vagrant box update
+
+to check outdated:
+vagrant box outdated.
+
+to delete:
+vagrant box remove ubuntu/trusty
+
+for plugin:
+vagrant plugin install vagrant-vbguest
+vagrant plugin list
+vagrant plugin uninstall vagrant-vbguest
+
+(to access /vagrant use the vbguest addition).
+
+to copy the file to vm:
+cp hostfile /
+
+vagrant provisioning:
+types: puppet,shell
+it is used in running environment.
+it is used for automatically installing the software or alter configurations.
+it occur when a new user added.
+every provisioner has a type "shell"
+
+use --vagrant up, --vagrant provision, --vagrant reload -provision,
+
+to use the up and load:
+--no-provision
+
+to use command with type: 
+--provision-with 
+
+for multiple provision methods:
+--config.vm.provision methods
+
+"big base box":
+longer to setup.
+hard to update multiple images.
+faster provisioning
+
+"minimal base box":
+slower running.(first vagrant up)
+fast creation.
+
+"core base box":
+it is a os package manager.
+require some setup.
+require "pre" provisioned.
