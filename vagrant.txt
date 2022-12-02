@@ -72,3 +72,49 @@ fast creation.
 it is a os package manager.
 require some setup.
 require "pre" provisioned.
+
+
+vagrant forward server(for port accessing):
+uncomment in vagrantfile.
+
+package the our image:
+vagrant package --output pack.box
+
+to check the status:
+vagrant status
+
+to use the package:
+vagrant box add hostname box_name
+
+to create a vagrant file for the box:
+vagrant init hostname
+
+file provisioning:(in config)
+
+config.vbguest.auto_update = false
+
+for file:
+config.vm.provision "file or shell",
+source: "C:\\",
+destination: "~/"
+
+for provisioning use:
+vagrant provision.
+vagrant up --provision
+
+for shell:
+config.vm.provision "shell",
+ inline: "yum install -y git"
+ 
+ for used defined variable:
+ 
+ $my=<<my
+ yum install -y *
+ my
+ 
+ config.vm.provision "shell",
+ inline: $my
+ 
+ for path:
+ path: "path"
+ 
